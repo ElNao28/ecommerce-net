@@ -8,7 +8,7 @@ builder.Services.AddGrpcSwagger();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1",
-    new OpenApiInfo { Title = "Ecommerce API" , Version = "v1"});
+    new OpenApiInfo { Title = "Ecommerce API", Version = "v1" });
 });
 
 // Connection with DataBase
@@ -16,6 +16,7 @@ var connectionSql = builder.Configuration.GetConnectionString("ConexionSql");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionSql));
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddOpenApi();
@@ -30,7 +31,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json","Ecommerce API");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ecommerce API");
     });
 }
 
