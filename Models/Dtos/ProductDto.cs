@@ -16,5 +16,5 @@ public class ProductDto
     // Relation between Category
     public int CategoryId { get; set; }
 
-    public string CategoryName { get; set; } = string.Empty;
+    public Category? Category { get; set; }
 }
